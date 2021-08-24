@@ -1,0 +1,1 @@
+url_auth = 'https://discord.com/api/v9/auth'
