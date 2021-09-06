@@ -1,11 +1,10 @@
-# import requests
-# import config
-# import helper
-from pathlib import Path
 import pymailtm
+from classes import Client
 
-account = pymailtm.MailTm().get_account()
+# account = pymailtm.MailTm().get_account()
+# print(account.address)
+# print(account.password)
 
-# print(account)
 
-print(Path.home())
+client = Client()
+client.save()

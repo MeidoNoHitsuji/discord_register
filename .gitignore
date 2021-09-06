@@ -1,2 +1,4 @@
 tokens.txt
+accounts.json
+.env
 __pycache__

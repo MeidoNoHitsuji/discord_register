@@ -2,12 +2,15 @@ import requests
 import config
 import json
 import random
+import secrets
+import string
 
 from rich import print
 from datetime import datetime, timedelta
+from python_rucaptcha.HCaptcha import aioHCaptcha
 
 def fingerprint() -> str:
-    response = requests.post(f"{config.url_auth}/fingerprint")
+    response = requests.post(f"{config.URL_AUTH}/fingerprint")
     if response.status_code == 200:
         print(response.content)
         content: dict = json.loads(response.content)
@@ -29,7 +32,7 @@ def register(fingerprint, captcha_key=None):
         'username': "Odling Ziva",
     }
 
-    response = requests.post(f"{config.url_auth}/register", json=data)
+    response = requests.post(f"{config.URL_AUTH}/register", json=data)
     print(response)
 
 def random_date():
@@ -39,4 +42,8 @@ def random_date():
     rand_days = random.randrange(t.days)
     result = start_date + timedelta(days=rand_days)
     return result.strftime("%Y-%m-%d")
+
+def random_password(lenght=16):
+    alphabet = string.ascii_letters + string.digits
+    return ''.join(secrets.choice(alphabet) for i in range(lenght))
     
